@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Books</title>
+</head>
+<body>
+    <h1>Book List</h1>
+    <form action="/books/search" method="get">
+        <input type="text" name="title" placeholder="Search by title">
+        <button type="submit">Search</button>
+    </form>
+    <form action="/books/author" method="get">
+        <input type="text" name="author" placeholder="Search by author">
+        <button type="submit">Search</button>
+    </form>
+    <form action="/books/language" method="get">
+        <input type="text" name="language" placeholder="Search by language">
+        <button type="submit">Search</button>
+    </form>
+    <form action="/books/year" method="get">
+        <input type="text" name="year" placeholder="Search by year">
+        <button type="submit">Search</button>
+    </form>
+    <a href="/books/add">Add New Book</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Language</th>
+                <th>Year</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.title}">Title</td>
+                <td th:text="${book.author}">Author</td>
+                <td th:text="${book.language}">Language</td>
+                <td th:text="${book.publicationYear}">Year</td>
+                <td>
+                    <a th:href="@{/books/delete/{id}(id=${book.id})}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
